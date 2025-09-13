@@ -46,6 +46,7 @@ class SeachVC: UIViewController {
     private func configureGFTextField() {
         
         self.view.addSubview(self.gfTextField)
+        self.gfTextField.delegate = self
         
         NSLayoutConstraint.activate([
             self.gfTextField.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: 48),
@@ -71,4 +72,12 @@ class SeachVC: UIViewController {
         self.view.addGestureRecognizer(tapGestureRecognizer)
     }
 
+}
+
+
+extension SeachVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        debugPrint("print")
+        return true
+    }
 }
