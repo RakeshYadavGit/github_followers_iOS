@@ -6,6 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F904316E2E75B76F00E306FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F904316B2E75B76F00E306FA /* ContentView.swift */; };
+		F904316F2E75B76F00E306FA /* GitHubFollowersSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F904316C2E75B76F00E306FA /* GitHubFollowersSwiftUIApp.swift */; };
+		F90431702E75B76F00E306FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F904316A2E75B76F00E306FA /* Assets.xcassets */; };
+		F90431742E75B7C700E306FA /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90431732E75B7C700E306FA /* GFTextField.swift */; };
+		F90431762E75B7D800E306FA /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90431752E75B7D800E306FA /* GFButton.swift */; };
+		F90431782E75B7F700E306FA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90431772E75B7F700E306FA /* SearchView.swift */; };
+		F904317A2E75B83000E306FA /* FavoritesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90431792E75B83000E306FA /* FavoritesListView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F904314D2E75B56500E306FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,14 +37,16 @@
 		F904313F2E75B56400E306FA /* GitHubFollowersSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubFollowersSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F904314C2E75B56500E306FA /* GitHubFollowersSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubFollowersSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90431562E75B56500E306FA /* GitHubFollowersSwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubFollowersSwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F904316A2E75B76F00E306FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F904316B2E75B76F00E306FA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F904316C2E75B76F00E306FA /* GitHubFollowersSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubFollowersSwiftUIApp.swift; sourceTree = "<group>"; };
+		F90431732E75B7C700E306FA /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
+		F90431752E75B7D800E306FA /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
+		F90431772E75B7F700E306FA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		F90431792E75B83000E306FA /* FavoritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F90431412E75B56400E306FA /* GitHubFollowersSwiftUI */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = GitHubFollowersSwiftUI;
-			sourceTree = "<group>";
-		};
 		F904314F2E75B56500E306FA /* GitHubFollowersSwiftUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = GitHubFollowersSwiftUITests;
@@ -75,7 +87,7 @@
 		F90431362E75B56400E306FA = {
 			isa = PBXGroup;
 			children = (
-				F90431412E75B56400E306FA /* GitHubFollowersSwiftUI */,
+				F904316D2E75B76F00E306FA /* GitHubFollowersSwiftUI */,
 				F904314F2E75B56500E306FA /* GitHubFollowersSwiftUITests */,
 				F90431592E75B56500E306FA /* GitHubFollowersSwiftUIUITests */,
 				F90431402E75B56400E306FA /* Products */,
@@ -92,6 +104,36 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F904316D2E75B76F00E306FA /* GitHubFollowersSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				F90431722E75B79500E306FA /* Views */,
+				F90431712E75B77A00E306FA /* CustomComponents */,
+				F904316A2E75B76F00E306FA /* Assets.xcassets */,
+				F904316B2E75B76F00E306FA /* ContentView.swift */,
+				F904316C2E75B76F00E306FA /* GitHubFollowersSwiftUIApp.swift */,
+			);
+			path = GitHubFollowersSwiftUI;
+			sourceTree = "<group>";
+		};
+		F90431712E75B77A00E306FA /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				F90431732E75B7C700E306FA /* GFTextField.swift */,
+				F90431752E75B7D800E306FA /* GFButton.swift */,
+			);
+			path = CustomComponents;
+			sourceTree = "<group>";
+		};
+		F90431722E75B79500E306FA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F90431772E75B7F700E306FA /* SearchView.swift */,
+				F90431792E75B83000E306FA /* FavoritesListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +148,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				F90431412E75B56400E306FA /* GitHubFollowersSwiftUI */,
 			);
 			name = GitHubFollowersSwiftUI;
 			packageProductDependencies = (
@@ -212,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F90431702E75B76F00E306FA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F90431782E75B7F700E306FA /* SearchView.swift in Sources */,
+				F90431742E75B7C700E306FA /* GFTextField.swift in Sources */,
+				F904317A2E75B83000E306FA /* FavoritesListView.swift in Sources */,
+				F904316E2E75B76F00E306FA /* ContentView.swift in Sources */,
+				F90431762E75B7D800E306FA /* GFButton.swift in Sources */,
+				F904316F2E75B76F00E306FA /* GitHubFollowersSwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

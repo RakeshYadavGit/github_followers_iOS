@@ -77,7 +77,7 @@ class SeachVC: UIViewController {
 
 extension SeachVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        debugPrint("print")
+//        debugPrint("print \(textField.text)")
         return true
     }
 }
