@@ -81,6 +81,7 @@ class SeachVC: UIViewController {
     @objc private func pushFollowerVC() {
         
         guard self.isUserNameEntered else {
+            self.presentGFAlertOnMainThread(title: "Empty User Name", message: "Please enter a user name. It cannot be empty 😙", buttonTitle: "Ok")
             return
         }
         

@@ -26,7 +26,7 @@ class GFBodyLabel: UILabel {
     
     private func configure() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.textColor = .label
+        self.textColor = .secondaryLabel
         self.font = UIFont.preferredFont(forTextStyle: .body)
         self.lineBreakMode = .byWordWrapping
         self.minimumScaleFactor = 0.75
