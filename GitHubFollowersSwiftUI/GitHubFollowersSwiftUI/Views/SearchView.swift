@@ -10,6 +10,8 @@ import SwiftUI
 struct SearchView: View {
     
     @State private var userName: String = ""
+    @State private var navigate = false
+    @State private var showAlert: Bool = false
     
     var body: some View {
         VStack {
@@ -30,13 +32,24 @@ struct SearchView: View {
             Spacer()
             
             GFButton(backgroundColor: (Color(.systemGreen)), text: "Get Followers") {
-                debugPrint("Button Tapped")
+                guard !userName.isEmpty else {
+                    self.showAlert.toggle()
+                    return
+                }
+                
+                self.navigate.toggle()
             }
             .padding(.horizontal, 50)
             .padding(.bottom, 50)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.systemBackground))
+        .navigationTitle("Search")
+        .toolbar(.hidden, for: .navigationBar)
+        .navigationDestination(isPresented: self.$navigate) {
+            FollowerListVC(userName: self.userName)
+        }
+        .presentAlert(isPresented: self.$showAlert, title: "Empty User Name", message: "Please enter a user name. It cannot be empty 😙", buttonTitle: "Ok")
     }
 }
 

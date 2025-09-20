@@ -19,7 +19,7 @@ struct GFBodyLabel: View {
     
     var body: some View {
         Text(self.text)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(Color(.secondaryLabel))
             .multilineTextAlignment(self.textAlignment)
             .font(.body)
             .truncationMode(.tail)

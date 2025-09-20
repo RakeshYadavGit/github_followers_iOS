@@ -22,7 +22,7 @@ struct GFTitleLabel: View {
     var body: some View {
         Text(self.text)
             .font(Font.system(size: self.fontSize, weight: .bold))
-            .foregroundStyle(Color.primary)
+            .foregroundStyle(Color(.label))
             .multilineTextAlignment(self.textAlignment)
             .lineLimit(1)
             .truncationMode(.tail)

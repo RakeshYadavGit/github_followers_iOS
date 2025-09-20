@@ -10,14 +10,22 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            SearchView()
-                .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
-                }
-            FavoritesListView()
-                .tabItem {
-                    Label("Favorites", systemImage: "star")
-                }
+            NavigationStack {
+                SearchView()
+            }
+            .tabItem {
+                Label("Search", systemImage: "magnifyingglass")
+            }
+            .navigationTitle("Search")
+            
+            NavigationStack {
+                FavoritesListView()
+            }
+            .tabItem {
+                Label("Favorites", systemImage: "star")
+            }
+            .navigationTitle("Favorites")
+            
         }
         .tint(.green)
     }
