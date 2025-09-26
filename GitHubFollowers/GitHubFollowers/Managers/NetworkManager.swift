@@ -5,12 +5,14 @@
 //  Created by Rakesh Yadav on 20/09/25.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
     
     static let shared: NetworkManager = NetworkManager()
-    let baseUrl: String = "https://api.github.com/users/"
+    
+    private let baseUrl: String = "https://api.github.com/users/"
+    let cache: NSCache = NSCache<NSString, UIImage>()
     
     private init() {}
     
@@ -48,6 +50,36 @@ class NetworkManager {
             } catch {
                 completion(.failure(.invalideData))
             }
+        }
+        
+        task.resume()
+    }
+    
+    func getAvatarImage(url: String, completion: @escaping (Result<Data, GFError>) -> Void) {
+        
+        guard let url: URL = URL(string: url) else {
+            completion(.failure(.unableToCompleteRequest))
+            return
+        }
+        
+        let task: URLSessionDataTask = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            if let _ = error {
+                completion(.failure(.unableToCompleteRequest))
+            }
+            
+            guard let response: HTTPURLResponse = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.unableToCompleteRequest))
+                return
+            }
+            
+            guard let data: Data = data else {
+                completion(.failure(.invalideData))
+                return
+            }
+            
+            completion(.success(data))
+            
         }
         
         task.resume()
