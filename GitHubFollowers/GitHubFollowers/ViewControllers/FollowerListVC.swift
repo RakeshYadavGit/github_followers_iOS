@@ -104,7 +104,6 @@ class FollowerListVC: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search for a username..."
-        searchController.obscuresBackgroundDuringPresentation = true
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
 
@@ -130,6 +129,7 @@ extension FollowerListVC: UICollectionViewDelegate {
         let follower: Follower = followers[indexPath.item]
         
         let destVC: UserInfoVC = .init()
+        destVC.userName = follower.login
         
         let navigationController: UINavigationController = .init(rootViewController: destVC)
         

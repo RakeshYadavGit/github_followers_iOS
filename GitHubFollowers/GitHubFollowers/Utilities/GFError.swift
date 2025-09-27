@@ -1,5 +1,5 @@
 //
-//  ErrorMessages.swift
+//  GFError.swift
 //  GitHubFollowers
 //
 //  Created by Rakesh Yadav on 20/09/25.
