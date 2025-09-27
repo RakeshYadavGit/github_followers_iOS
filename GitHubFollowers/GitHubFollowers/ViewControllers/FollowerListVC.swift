@@ -16,15 +16,19 @@ class FollowerListVC: UIViewController {
     var userName: String!
     var followers: [Follower] = []
     
+    var page: Int = 1
+    var hashMoreFollower: Bool = true
+    
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureViewControllers()
+        self.configureSearchController()
         self.setupCollectionView()
         self.configureDataSource()
-        self.getFollowers()
+        self.getFollowers(page: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,33 +45,31 @@ class FollowerListVC: UIViewController {
         self.collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnUICollectionViewFlowLayout(in: view))
         self.view.addSubview(self.collectionView)
         self.collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseIdentifier)
+        self.collectionView.delegate = self
     }
     
-    private func createThreeColumnFlowLayout() -> UICollectionViewFlowLayout {
-        
-        let width: CGFloat = self.view.bounds.width
-        let padding: CGFloat = 12
-        let minimumItemSpacing: CGFloat = 10
-        let availableWidth: CGFloat = width - (padding * 2) - (minimumItemSpacing * 2)
-        let itemWidth: CGFloat = availableWidth / 3
-        let itemHeight: CGFloat = itemWidth + 40
-        
-        let flowLayout: UICollectionViewFlowLayout = .init()
-        flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowLayout.itemSize = CGSize(width: itemWidth, height: itemHeight)
-        
-        return flowLayout
-    }
-    
-    private func getFollowers() {
-        NetworkManager.shared.getFollowers(for: self.userName, page: 1) { [weak self] result in
-            
+    private func getFollowers(page: Int) {
+        self.showLoadView()
+        NetworkManager.shared.getFollowers(for: self.userName, page: page) { [weak self] result in
+
             guard let self: FollowerListVC = self else { return }
+            
+            self.dismissLoadingView()
             
             switch result {
                 
             case .success(let followers):
-                self.followers = followers
+                if followers.count < 100 {
+                    self.hashMoreFollower = false
+                }
+                self.followers.append(contentsOf: followers)
+                
+                if self.followers.isEmpty {
+                    let message: String = "This user does not have any followers. Go follow them 😀."
+                    DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
+                    return
+                }
+                
                 self.updateData()
                 
             case .failure(let error):
@@ -93,5 +95,36 @@ class FollowerListVC: UIViewController {
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences: true)
         }
+    }
+    
+    private func configureSearchController() {
+        let searchController: UISearchController = .init()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search for a username..."
+        searchController.obscuresBackgroundDuringPresentation = true
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+
+    }
+}
+
+
+extension FollowerListVC: UICollectionViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY: CGFloat = scrollView.contentOffset.y
+        let conentHeight: CGFloat = scrollView.contentSize.height
+        let height: CGFloat = scrollView.frame.size.height
+        
+        if offsetY > conentHeight - height {
+            guard self.hashMoreFollower else { return }
+            self.page += 1
+            self.getFollowers(page: self.page)
+        }
+    }
+}
+
+extension FollowerListVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
 }
